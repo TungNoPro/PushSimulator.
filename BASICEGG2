@@ -1,0 +1,52 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({
+    Name = "Tung Hub | Push simulator",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "OrionTest"
+})
+
+local Tab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+    Name = "Farm script"
+})
+
+Tab:AddButton({
+    Name = "Reaper and Tora scripts",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/YKT5w84y"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraIsMe/ToraIsMe/main/0Push"))()
+    end
+})
+
+local Section = Tab:AddSection({
+    Name = "Auto Hatch"
+})
+
+Tab:AddToggle({
+    Name = "Auto hatch 15M egg with delete",
+    Default = false,
+    Callback = function(Value)
+        _G.egg = Value
+        while _G.egg and wait() do
+            local args = {
+                [1] = "Hatch1",
+                [2] = "Basic",
+                [3] = {
+                    ["Chicken"] = true,
+                    ["Pig"] = true,
+                    ["Bull"] = true,
+                    ["Poodle Dog"] = true,
+                    ["Dog"] = true
+
+                }
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Hatch"):FireServer(unpack(args))
+        end
+    end
+})
